@@ -17,11 +17,6 @@
       </header>
 
       <section class="intro panel">
-        <div>
-          <p class="eyebrow">KML → NAVIGATION</p>
-          <h1>Make your route<br /><em>driveable.</em></h1>
-          <p class="lede">Upload a track, tune the route fidelity, and get Google Maps URLs that respect its waypoint limit.</p>
-        </div>
         <label class="upload" for="kml-file"><input id="kml-file" type="file" accept=".kml,application/vnd.google-earth.kml+xml" /><span class="upload-icon">⌁</span><strong>Choose a KML file</strong><small>or drop it here</small></label>
       </section>
 
@@ -42,7 +37,7 @@
             <label><input type="radio" name="split-mode" value="placemarks" /><span><b>Split at placemarks</b><small>Use point placemarks on the track</small></span></label>
             <label><input type="radio" name="split-mode" value="manual" /><span><b>Manual</b><small>Click the map to place splits</small></span></label>
           </div>
-          <label id="auto-splits"><span>Maximum splits <output id="auto-splits-out">2</output></span><input id="auto-splits-input" type="range" min="0" max="12" value="2" /></label>
+          <label id="auto-splits"><span>Maximum splits</span><input id="auto-splits-input" type="number" min="0" step="1" value="2" inputmode="numeric" /></label>
           <p id="split-note" class="split-note"></p>
         </section>
 
