@@ -28,10 +28,22 @@
       <section id="workspace" hidden>
         <section class="settings panel">
           <div class="setting-title"><p class="eyebrow">ROUTE SETTINGS</p><h2>Route shaping</h2></div>
-          <label><span>Waypoints per link <output id="waypoint-out">8</output></span><input id="waypoints" type="range" min="2" max="23" value="8" /><small>Google Maps supports up to 9 in most browsers; use fewer for the most reliable links.</small></label>
+          <label><span>Waypoints per link <output id="waypoint-out">8</output></span><input id="waypoints" type="range" min="2" max="23" value="8" /><small>Maximum intermediate stops in each Google Maps link.</small></label>
           <label><span>Shape strictness <output id="strictness-out">Balanced</output></span><input id="strictness" type="range" min="1" max="5" value="3" /><small>Higher values retain more points so each generated leg follows the original more closely.</small></label>
+          <label><span>Minimum waypoint spacing <output id="spacing-out">250 m</output></span><input id="spacing" type="range" min="0" max="2000" step="50" value="250" /><small>Removes near-duplicate waypoints before each link is created.</small></label>
           <div class="stat"><b id="track-points">0</b><span>original track points</span></div>
           <div class="stat"><b id="route-count">0</b><span>navigation links</span></div>
+        </section>
+
+        <section class="split-panel panel">
+          <div><p class="eyebrow">ROUTE SPLITTING</p><h2>Choose how to split</h2></div>
+          <div class="modes" role="radiogroup" aria-label="Route splitting mode">
+            <label><input type="radio" name="split-mode" value="automatic" checked /><span><b>Automatic</b><small>Evenly distribute route splits</small></span></label>
+            <label><input type="radio" name="split-mode" value="placemarks" /><span><b>Split at placemarks</b><small>Use point placemarks on the track</small></span></label>
+            <label><input type="radio" name="split-mode" value="manual" /><span><b>Manual</b><small>Click the map to place splits</small></span></label>
+          </div>
+          <label id="auto-splits"><span>Maximum splits <output id="auto-splits-out">2</output></span><input id="auto-splits-input" type="range" min="0" max="12" value="2" /></label>
+          <p id="split-note" class="split-note"></p>
         </section>
 
         <section class="map-panel panel">
@@ -41,6 +53,7 @@
         </section>
 
         <section class="routes panel"><div class="routes-head"><div><p class="eyebrow">GENERATED LINKS</p><h2>Ready for Google Maps</h2></div><button id="copy-all" class="secondary" type="button">Copy all URLs</button></div><div id="route-list"></div></section>
+        <section class="placemark-panel panel"><div><p class="eyebrow">KML PLACEMARKS</p><h2>Points on this track</h2></div><div id="placemark-list" class="placemark-list"></div></section>
       </section>
       <section id="empty-state" class="empty"><span>⌁</span><p>Routes stay in your browser. Nothing is uploaded.</p></section>
     </main>
