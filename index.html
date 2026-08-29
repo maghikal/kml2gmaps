@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrailLink — KML to Google Maps</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="brand"><span class="mark">↗</span><span>Trail<span>Link</span></span></div>
+        <p>Turn a KML track into shareable Google Maps navigation links.</p>
+        <span class="client-pill">100% client-side</span>
+      </header>
+
+      <section class="intro panel">
+        <div>
+          <p class="eyebrow">KML → NAVIGATION</p>
+          <h1>Make your route<br /><em>driveable.</em></h1>
+          <p class="lede">Upload a track, tune the route fidelity, and get Google Maps URLs that respect its waypoint limit.</p>
+        </div>
+        <label class="upload" for="kml-file"><input id="kml-file" type="file" accept=".kml,application/vnd.google-earth.kml+xml" /><span class="upload-icon">⌁</span><strong>Choose a KML file</strong><small>or drop it here</small></label>
+      </section>
+
+      <section id="workspace" hidden>
+        <section class="settings panel">
+          <div class="setting-title"><p class="eyebrow">ROUTE SETTINGS</p><h2>Route shaping</h2></div>
+          <label><span>Waypoints per link <output id="waypoint-out">8</output></span><input id="waypoints" type="range" min="2" max="23" value="8" /><small>Google Maps supports up to 9 in most browsers; use fewer for the most reliable links.</small></label>
+          <label><span>Shape strictness <output id="strictness-out">Balanced</output></span><input id="strictness" type="range" min="1" max="5" value="3" /><small>Higher values retain more points so each generated leg follows the original more closely.</small></label>
+          <div class="stat"><b id="track-points">0</b><span>original track points</span></div>
+          <div class="stat"><b id="route-count">0</b><span>navigation links</span></div>
+        </section>
+
+        <section class="map-panel panel">
+          <div class="map-header"><div><p class="eyebrow">ROUTE PREVIEW</p><h2 id="map-title">Your route</h2></div><div class="legend"><i class="original"></i>Original KML <i class="generated"></i>Generated links</div></div>
+          <div id="map"></div>
+          <div class="map-help"><b>Split editor</b><span>Click the map near the track to add a split. Drag a numbered split marker to adjust it; click a marker to remove it.</span><button id="clear-splits" type="button">Clear manual splits</button></div>
+        </section>
+
+        <section class="routes panel"><div class="routes-head"><div><p class="eyebrow">GENERATED LINKS</p><h2>Ready for Google Maps</h2></div><button id="copy-all" class="secondary" type="button">Copy all URLs</button></div><div id="route-list"></div></section>
+      </section>
+      <section id="empty-state" class="empty"><span>⌁</span><p>Routes stay in your browser. Nothing is uploaded.</p></section>
+    </main>
+    <template id="route-template"><article class="route-card"><div class="route-swatch"></div><div class="route-info"><strong></strong><small></small><a target="_blank" rel="noopener">Open in Google Maps ↗</a></div><button class="copy-url" type="button">Copy URL</button></article></template>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
